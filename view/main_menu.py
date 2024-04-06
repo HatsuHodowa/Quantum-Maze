@@ -1,6 +1,5 @@
 import pygame
 import pygame_gui
-import time
 
 import pygame_gui.ui_manager
 
@@ -23,7 +22,7 @@ class MainMenu():
         self.default_kwargs = {"manager": self.ui_manager}
         self.center_anchor_kwargs = {"anchors": {"centerx": "centerx", "top": "top"}}
 
-        # buttons and UI events
+        # other main properties
         self.button_events = {}
 
         # setting up window
