@@ -63,6 +63,7 @@ class GridDisplay():
                     )
                     cell_value = self.level.get_coord_value(x_coord, y_coord)
                     cell_color = cell_type.CELL_COLORS[cell_value]
+                    cell_color = cell_type.CELL_COLORS[cell_value]
 
                     # creating cell
                     pygame.draw.rect(self.window, cell_color, cell_rect, 0)
