@@ -1,8 +1,16 @@
 import pygame
 import pygame_gui
-
 import pygame_gui.ui_manager
+import sys
 
+# importing modules
+sys.path.append("..")
+sys.path.append("resources")
+
+import grid_display
+import SampleLevels
+
+# initializing pygame
 pygame.init()
 
 # main menu class
@@ -83,9 +91,9 @@ class MainMenu():
         level1 = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.2, 0.8, 0.14),
             text="Level 1 - X Gate", object_id="level1_button", **self.default_kwargs, **self.center_anchor_kwargs)
         level2 = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.35, 0.8, 0.14),
-            text="Level 2 - Y Gate", object_id="level2_button", **self.default_kwargs, **self.center_anchor_kwargs)
+            text="Level 2 - Z Gate", object_id="level2_button", **self.default_kwargs, **self.center_anchor_kwargs)
         level3 = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.5, 0.8, 0.14),
-            text="Level 3 - Z Gate", object_id="level3_button", **self.default_kwargs, **self.center_anchor_kwargs)
+            text="Level 3 - H Gate", object_id="level3_button", **self.default_kwargs, **self.center_anchor_kwargs)
         back_button = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.65, 0.8, 0.14),
             text="Back", object_id="back_button", **self.default_kwargs, **self.center_anchor_kwargs)
         
@@ -93,7 +101,11 @@ class MainMenu():
         def on_back_button():
             self.set_window("main_menu")
 
+        def on_level1_button():
+            grid_display.GridDisplay(SampleLevels.XGate)
+
         self.button_events["back_button"] = on_back_button
+        self.button_events["level1_button"] = on_level1_button
 
     def generate_scale_rect(self, x_pos, y_pos, width, height):
         """Converts 4 positional and scale values from a proportion of the screen to an actual
