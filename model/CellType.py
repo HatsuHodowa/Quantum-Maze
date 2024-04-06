@@ -1,6 +1,6 @@
 from enum import Enum
 
-class CellType(Enum):
+class cell_type(Enum):
     PATH = 0
     WALL = 1
     ENTANGLED_BLOCK_1 = 2 

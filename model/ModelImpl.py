@@ -1,4 +1,5 @@
 from Model import Model
+from CellType import cell_type
 import pygame 
 import sys
 
@@ -21,7 +22,19 @@ class ModelImpl(Model):
     def isSolved(self) -> bool:
         puzzle = self.get_active_puzzle()
         width, height = puzzle.get_width(), puzzle.get_height()
-        pass
+        for x in range(width):
+            for y in range(height):
+                cell_type = puzzle.get_cell_type(x, y)
+                if cell_type == "CLUE":
+                    if not self.is_clue_satisfied(y, x):
+                        return False
+                elif cell_type == "CORRIDOR":
+                    if not self.is_lit(y, x):
+                        return False
+                if self.is_lamp(y, x):
+                    if self.is_lamp_illegal(y, x):
+                        return False
+        return True
     
     def get_active_puzzle(self):
         return self.library.get_puzzle(self.current)
