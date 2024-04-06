@@ -23,12 +23,12 @@ class MainMenu():
         self.default_kwargs = {"manager": self.ui_manager}
         self.center_anchor_kwargs = {"anchors": {"centerx": "centerx", "top": "top"}}
 
+        # buttons and UI events
+        self.button_events = {}
+
         # setting up window
         pygame.display.set_caption("Quantum Maze")
-
-        # loading main menu
-        self.current_window = {}
-        self.open_main_menu()
+        self.set_window("main_menu")
 
         # starting
         while self.running:
@@ -38,6 +38,10 @@ class MainMenu():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+
+                if event.type == pygame_gui.UI_BUTTON_PRESSED:
+                    if event.ui_object_id in self.button_events.keys():
+                        self.button_events[event.ui_object_id]()
 
                 self.ui_manager.process_events(event)
 
@@ -49,22 +53,48 @@ class MainMenu():
 
         pygame.quit()
 
-    def clear_window(self):
-        for item_name in self.current_window:
-            window_item = self.current_window[item_name]
+    def set_window(self, window_name: str):
+        self.ui_manager.clear_and_reset()
+        if hasattr(self, window_name):
+            getattr(self, window_name)()
 
-    def open_main_menu(self):
-        self.clear_window()
+    def main_menu(self):
 
         # creating ui elements
-        self.current_window["title"] = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.05, 0.8, 0.2),
+        title = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.05, 0.8, 0.2),
             text="Quantum Maze", **self.default_kwargs, **self.center_anchor_kwargs)
-        self.current_window["select_level"] = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.25, 0.8, 0.2),
-            text="Select Level", **self.default_kwargs, **self.center_anchor_kwargs)
-        self.current_window["tutorial"] = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.50, 0.8, 0.2),
-            text="Tutorial", **self.default_kwargs, **self.center_anchor_kwargs)
-        self.current_window["credits"] = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.75, 0.8, 0.2),
-            text="Credits", **self.default_kwargs, **self.center_anchor_kwargs)
+        levels_button = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.2, 0.8, 0.18),
+            text="Select Level", object_id="levels_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        tutorial_button = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.4, 0.8, 0.18),
+            text="Tutorial", object_id="tutorial_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        credits_button = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.6, 0.8, 0.18),
+            text="Credits", object_id="credits_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        
+        # button events
+        def on_levels_button():
+            self.set_window("levels_menu")
+
+        self.button_events["levels_button"] = on_levels_button
+
+    def levels_menu(self):
+
+        # creating ui elements
+        title = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.05, 0.8, 0.2),
+            text="All Levels", **self.default_kwargs, **self.center_anchor_kwargs)
+        level1 = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.2, 0.8, 0.14),
+            text="Level 1 - X Gate", object_id="level1_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        level2 = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.35, 0.8, 0.14),
+            text="Level 2 - Y Gate", object_id="level2_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        level3 = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.5, 0.8, 0.14),
+            text="Level 3 - Z Gate", object_id="level3_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        back_button = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.65, 0.8, 0.14),
+            text="Back", object_id="back_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        
+        # button events
+        def on_back_button():
+            self.set_window("main_menu")
+
+        self.button_events["back_button"] = on_back_button
 
     def generate_scale_rect(self, x_pos, y_pos, width, height):
         """Converts 4 positional and scale values from a proportion of the screen to an actual
