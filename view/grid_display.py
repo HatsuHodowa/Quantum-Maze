@@ -6,7 +6,7 @@ sys.path.append("..")
 sys.path.append("resources")
 sys.path.append("model")
 
-from ..model import cell_type
+import cell_type
 
 # initializing pygame
 pygame.init()
