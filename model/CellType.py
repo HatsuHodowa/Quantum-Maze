@@ -10,7 +10,8 @@ CELL_COLORS = {
     5 : pygame.Color(255, 150, 150),
     6 : pygame.Color(255, 255, 0),
     7 : pygame.Color(255, 255, 0),
-    8 : pygame.Color(255, 255, 0)
+    8 : pygame.Color(255, 255, 0),
+    9 : pygame.Color(255, 255, 0)
 }
 
 class cell_type(Enum):
@@ -20,7 +21,8 @@ class cell_type(Enum):
     ENTANGLED_BLOCK_2 = 3
     ENTANGLED_BLOCK_TRIGGER = 4
     SPAWN_POINT = 5
-    CHECKPOINT_01 = 6
-    CHECKPOINT_10 = 7
-    CHECKPOINT_11 = 8
+    CHECKPOINT_00 = 6
+    CHECKPOINT_01 = 7
+    CHECKPOINT_10 = 8
+    CHECKPOINT_11 = 9
     

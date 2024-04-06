@@ -10,6 +10,7 @@ import CellType
 
 # initializing pygame
 pygame.init()
+pygame.font.init()
 
 # constants
 GRID_SIZE = 10
@@ -65,6 +66,24 @@ class GridDisplay():
 
                     # creating cell
                     pygame.draw.rect(self.window, cell_color, cell_rect, 0)
+
+                    # drawing labels on winning cells
+                    if cell_value in [6, 7, 8, 9]:
+
+                        # picking text
+                        text = "00"
+                        if cell_value == 7:
+                            text = "01"
+                        elif cell_value == 8:
+                            text = "10"
+                        elif cell_value == 9:
+                            text = "11"
+
+                        # creating text
+                        font = pygame.font.SysFont("timesnewroman", 14)
+                        text = font.render(text=text, antialias=True, color=pygame.Color(0, 0, 0))
+                        
+                        self.window.blit(text, cell_rect)
 
         # drawing player
         player_coord = self.level.player_coord
