@@ -7,6 +7,7 @@ sys.path.append("resources")
 sys.path.append("model")
 
 import SampleLevels
+import CellType
 
 pygame.init()
 
@@ -25,7 +26,7 @@ class GridDisplay():
         self.clock = pygame.time.Clock()
         self.running = True
 
-        self.current_grid = None
+        self.current_grid = SampleLevels.XGate
 
         # starting loop
         while self.running:
@@ -55,14 +56,18 @@ class GridDisplay():
             # looping grid cells
             for y_coord in range(GRID_SIZE):
                 for x_coord in range(GRID_SIZE):
-                    print(x_coord, y_coord)
 
                     # creating rect for cell
-                    cell_rect = pygame.Rect(GRID_RECT.topleft[0], GRID_RECT.topleft[1], CELL_SIZE, CELL_SIZE)
-                    cell_color = pygame.Color(255, 0, 0)
+                    cell_rect = pygame.Rect(
+                        GRID_RECT.topleft[0] + x_coord * CELL_SIZE,
+                        GRID_RECT.topleft[1] + y_coord * CELL_SIZE,
+                        CELL_SIZE, CELL_SIZE
+                    )
+                    cell_value = self.current_grid.get_coord_value(x_coord, y_coord)
+                    cell_color = CellType.CELL_COLORS[cell_value]
 
                     # creating cell
-                    pygame.draw.rect(self.window, cell_color, cell_rect, 5)
+                    pygame.draw.rect(self.window, cell_color, cell_rect, 0)
 
         # updating
         pygame.display.update()

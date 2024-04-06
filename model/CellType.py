@@ -1,4 +1,17 @@
 from enum import Enum
+import pygame
+
+CELL_COLORS = {
+    0 : pygame.Color(255, 255, 255),
+    1 : pygame.Color(0, 0, 0),
+    2 : pygame.Color(0, 0, 0),
+    3 : pygame.Color(255, 255, 255),
+    4 : pygame.Color(150, 150, 150),
+    5 : pygame.Color(255, 255, 255),
+    6 : pygame.Color(255, 255, 0),
+    7 : pygame.Color(255, 255, 0),
+    8 : pygame.Color(255, 255, 0)
+}
 
 class CellType(Enum):
     PATH = 0

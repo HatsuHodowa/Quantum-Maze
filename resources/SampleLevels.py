@@ -15,6 +15,9 @@ class Level():
         self.grid = grid
         self.winning_cell = winning_cell
 
+    def get_coord_value(self, x, y):
+        return self.grid[y][x]
+
 XGate = Level([
         [1, 1, 1, 1, 1, 1, 1, 1, 8, 1],
         [7, 0, 0, 0, 1, 0, 1, 0, 0, 1],
