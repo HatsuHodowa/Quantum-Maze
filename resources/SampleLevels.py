@@ -17,7 +17,16 @@ class Level():
 
     def get_coord_value(self, x, y):
         return self.grid[y][x]
+    
+    def getWidth(self, x:int):
+        return len(self.grid[x])
 
+    def getHeight(self, y: int):
+        return len(self.grid[y])
+    
+    def get_cell_type(self, x, y):
+        return 
+    
 XGate = Level([
         [1, 1, 1, 1, 1, 1, 1, 1, 8, 1],
         [7, 0, 0, 0, 1, 0, 1, 0, 0, 1],

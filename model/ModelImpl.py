@@ -1,7 +1,9 @@
 from Model import Model
-from CellType import cell_type
+from model.cell_type import cell_type
 import pygame 
 import sys
+
+from resources.SampleLevels import Level
 
 
 position = [0,0] # Some starting place for each level
@@ -25,15 +27,8 @@ class ModelImpl(Model):
         for x in range(width):
             for y in range(height):
                 cell_type = puzzle.get_cell_type(x, y)
-                if cell_type == "CLUE":
-                    if not self.is_clue_satisfied(y, x):
-                        return False
-                elif cell_type == "CORRIDOR":
-                    if not self.is_lit(y, x):
-                        return False
-                if self.is_lamp(y, x):
-                    if self.is_lamp_illegal(y, x):
-                        return False
+                if cell_type != Level.winning_cell:
+                    return False
         return True
     
     def get_active_puzzle(self):
@@ -59,7 +54,7 @@ class ModelImpl(Model):
         pass
     
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_UP] :
+    if keys[K_UP]:
         square_position[1] -= square_speed
     if keys[pygame.K_DOWN]:
         square_position[1] += square_speed
