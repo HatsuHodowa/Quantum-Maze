@@ -47,9 +47,6 @@ class GridDisplay():
         # background
         self.window.fill("black")
 
-        # drawing box
-        pygame.draw.rect(self.window, color="white", rect=GRID_RECT, width=1)
-
         # creating grid
         if self.current_grid != None:
             
@@ -68,6 +65,9 @@ class GridDisplay():
 
                     # creating cell
                     pygame.draw.rect(self.window, cell_color, cell_rect, 0)
+
+        # drawing box
+        pygame.draw.rect(self.window, color="white", rect=GRID_RECT, width=1)
 
         # updating
         pygame.display.update()
