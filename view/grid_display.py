@@ -6,7 +6,7 @@ sys.path.append("..")
 sys.path.append("resources")
 sys.path.append("model")
 
-import CellType
+from ..model import cell_type
 
 # initializing pygame
 pygame.init()
@@ -62,7 +62,7 @@ class GridDisplay():
                         CELL_SIZE, CELL_SIZE
                     )
                     cell_value = self.level.get_coord_value(x_coord, y_coord)
-                    cell_color = CellType.CELL_COLORS[cell_value]
+                    cell_color = cell_type.CELL_COLORS[cell_value]
 
                     # creating cell
                     pygame.draw.rect(self.window, cell_color, cell_rect, 0)
