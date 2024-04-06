@@ -15,6 +15,7 @@ GRID_SIZE = 10
 WINDOW_PIXEL_SIZE = (500, 500)
 MARGIN = 50
 GRID_RECT = pygame.Rect(MARGIN, MARGIN, 500 - MARGIN * 2, 500 - MARGIN * 2)
+CELL_SIZE = GRID_RECT.width / GRID_SIZE
 
 class GridDisplay():
     def __init__(self):
@@ -51,11 +52,17 @@ class GridDisplay():
         # creating grid
         if self.current_grid != None:
             
+            # looping grid cells
             for y_coord in range(GRID_SIZE):
                 for x_coord in range(GRID_SIZE):
+                    print(x_coord, y_coord)
 
                     # creating rect for cell
-                    pass
+                    cell_rect = pygame.Rect(GRID_RECT.topleft[0], GRID_RECT.topleft[1], CELL_SIZE, CELL_SIZE)
+                    cell_color = pygame.Color(255, 0, 0)
+
+                    # creating cell
+                    pygame.draw.rect(self.window, cell_color, cell_rect, 5)
 
         # updating
         pygame.display.update()
