@@ -7,6 +7,7 @@ sys.path.append("resources")
 sys.path.append("model")
 
 import cell_type
+import model
 
 # initializing pygame
 pygame.init()
@@ -28,15 +29,19 @@ class GridDisplay():
         self.running = True
 
         self.level = level
+        self.model = model.Model(self)
 
         # starting loop
         while self.running:
-            dt = self.clock.tick(30) / 1000
+            dt = self.clock.tick(60) / 1000
 
             # event handling
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+
+            # process model
+            self.model.on_update(dt)
 
             # updating display
             self.update_display()
