@@ -11,7 +11,7 @@ import copy
 7 = CHECKPOINT 1
 8 = CHECKPOINT_NEGATIVE
 9 = CHECKPOINT_POSITIVE
-
+10 = SUPERPOSTION TRIGGER
 """
 class Level():
     def __init__(self, grid, winning_cell: int, name: str):
