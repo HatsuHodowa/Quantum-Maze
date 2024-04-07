@@ -23,9 +23,10 @@ GRID_RECT = pygame.Rect(MARGIN, MARGIN, 500 - MARGIN * 2, 500 - MARGIN * 2)
 CELL_SIZE = GRID_RECT.width / GRID_SIZE
 
 class GridDisplay():
-    def __init__(self, level):
+    def __init__(self, level, menu):
         
         # properties
+        self.menu = menu
         self.window = pygame.display.set_mode(WINDOW_PIXEL_SIZE)
         self.ui_manager = pygame_gui.UIManager(WINDOW_PIXEL_SIZE)
         self.clock = pygame.time.Clock()
@@ -43,6 +44,9 @@ class GridDisplay():
         self.back_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(0, -60, 100, 50),
             text="Back", object_id="back_button", **self.default_kwargs,
             anchors={"centerx": "centerx", "bottom": "bottom"})
+        self.notif_text = pygame_gui.elements.UITextBox(relative_rect=pygame.Rect(0, -140, 450, 70),
+            html_text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", **self.default_kwargs,
+            anchors={"centerx": "centerx", "bottom": "bottom"}, )
 
         # starting loop
         while self.running:
@@ -52,10 +56,13 @@ class GridDisplay():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                    pygame.quit()
 
                 if event.type == pygame_gui.UI_BUTTON_PRESSED:
                     if event.ui_object_id == "back_button":
-                        print('back')
+                        self.running = False
+                        pygame.display.set_mode(self.menu.window_size)
+                        self.menu.set_window("levels_menu")
 
                 self.ui_manager.process_events(event)
 
@@ -67,8 +74,6 @@ class GridDisplay():
             self.update_display()
             self.ui_manager.draw_ui(self.window)
             pygame.display.flip()
-
-        pygame.quit()
 
     def update_display(self):
 
