@@ -63,6 +63,7 @@ class GridDisplay():
                         self.running = False
                         pygame.display.set_mode(self.menu.window_size)
                         self.menu.set_window("levels_menu")
+                        return
 
                 self.ui_manager.process_events(event)
 
