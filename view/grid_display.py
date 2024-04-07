@@ -70,6 +70,9 @@ class GridDisplay():
 
         pygame.quit()
 
+    def get_gridsize():
+        return GRID_SIZE
+    
     def update_display(self):
 
         # background
