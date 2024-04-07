@@ -123,6 +123,8 @@ class Model():
             # superposition party!
             self.superposition_active = True
             self.display.notification("Woo! Superposition party!!! Now every square is both a wall and a path at the same time!!")
+            level.set_coord_value(player_coords[0], player_coords[1], 0)
+            level.set_player_spawn()
 
         elif cell_value in [6, 7, 8, 9]:
             if cell_value == level.winning_cell:
