@@ -11,9 +11,6 @@ import cell_type
 import SampleLevels
 import grid_display
 
-# variables
-position = [0,0] # Some starting place for each level
-
 class Model():
     def __init__(self, display):
         self.display = display
@@ -129,22 +126,29 @@ class Model():
 
         elif cell_value in [6, 7, 8, 9]:
             if cell_value == level.winning_cell:
-
-                # winning game
-                self.display.notification("You did it! You have successfully completed this level!")
-
-                # going back after delay
-                def level_completed():
-                    self.display.go_back = True
-                    self.superposition_active = False
-                    level.reset()
-
-                self.start_delayed_action(2, level_completed)
-
+                self.win_game()
             else:
+                self.lose_game()
 
-                # losing game
-                self.display.notification("That was the wrong answer! Try the level again.")
-                self.superposition_active = False
-                level.reset()
+    def win_game(self):
+        level = self.display.level
+
+        # winning game
+        self.display.notification("You did it! You have successfully completed this level!")
+
+        # going back after delay
+        def level_completed():
+            self.display.go_back = True
+            self.superposition_active = False
+            level.reset()
+
+        self.start_delayed_action(2, level_completed)
+
+    def lose_game(self):
+        level = self.display.level
+
+        # losing game
+        self.display.notification("That was the wrong answer! Try the level again.")
+        self.superposition_active = False
+        level.reset()
                 
