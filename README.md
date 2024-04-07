@@ -13,7 +13,7 @@ Dependencies used: pygame & pygame-gui, before you attempt to run our code, plea
 Arryn Carlos O'Brien & Mustafa Aljumayli**
 
 Distribution of responsibilities:
-<br>
+<br><br>
 Arryn Carlos O'Brien:
 
 -UI/UX Design 
