@@ -14,12 +14,16 @@
 class Level():
     def __init__(self, grid, winning_cell: int, name: str):
         self.grid = grid
-        self.original_grid = grid.view()
+        self.original_grid = grid.copy()
         self.winning_cell = winning_cell
         self.player_coords = (0, 0)
         self.name = name
 
         # setting player at spawn location
+        self.set_player_spawn()
+
+    def reset(self):
+        self.grid = self.original_grid.copy()
         self.set_player_spawn()
 
     def set_player_spawn(self):

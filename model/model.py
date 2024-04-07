@@ -122,22 +122,15 @@ class Model():
 
         elif cell_value in [6, 7, 8, 9]:
             if cell_value == level.winning_cell:
-                self.display.notification("You did it! You solved the thing!")
-                print("Level completed. Returning to the menu...")
-                self.running = False
-                time.sleep(3.0)
-                pygame.display.set_mode(self.menu.window_size)
-        self.menu.set_window("levels_menu")
-        return
-        
-        
 
-    def reset(self):
-        # Reset the current level to its initial state
-        # This will require re-initializing the level object with its original grid
-        self.level = Level(self.level.grid, self.level.winning_cell, self.level.name)
-        self.model = Model(self)  # Re-initialize the model as well to reset player position and state
-        print("Level reset. Try again!")
+                # winning game
+                self.display.notification("You did it! You solved the thing!")
+                time.sleep(3.0)
+                self.display.return_to_levels()
+
             else:
+
+                # losing game
                 self.display.notification("You didn't do it! You didn't solve the thing!")
-                self.display.reset()
+                level.reset()
+                
