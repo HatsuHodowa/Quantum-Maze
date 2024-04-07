@@ -62,8 +62,8 @@ class GridDisplay():
                     pygame.quit()
 
                 if event.type == pygame_gui.UI_BUTTON_PRESSED:
-                    print('button press?')
                     if event.ui_object_id == "back_button":
+                        self.model.lose_game()
                         self.return_to_levels()
                         return
 

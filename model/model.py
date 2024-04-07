@@ -11,9 +11,6 @@ import cell_type
 import SampleLevels
 import grid_display
 
-# variables
-position = [0,0] # Some starting place for each level
-
 class Model():
     def __init__(self, display):
         self.display = display
@@ -22,15 +19,17 @@ class Model():
         self.superposition_active = False
         self.superposition_interval = 0
         self.last_superposition = 0
-        
-    def isOccupied(self) -> bool:
-        pass
-    
-    def isSolved(self) -> bool:
-        return True
 
-    def isMoveIllegal(self, r, c) -> bool:
-        pass
+        self.delayed_action_start = 0
+        self.delayed_action_active = False
+        self.delayed_action_callback = None
+        self.delayed_action_duration = 0
+
+    def start_delayed_action(self, delay: float, callback):
+        self.delayed_action_start = time.time()
+        self.delayed_action_callback = callback
+        self.delayed_action_duration = delay
+        self.delayed_action_active = True
     
     def on_update(self, dt):
 
@@ -71,6 +70,11 @@ class Model():
 
             # setting current time
             self.last_superposition = time.time()
+
+        # delayed actions
+        if self.delayed_action_active and time.time() - self.delayed_action_start > self.delayed_action_duration:
+            self.delayed_action_callback()
+            self.delayed_action_active = False
 
     def move_player(self, to_move):
         level = self.display.level
@@ -122,15 +126,29 @@ class Model():
 
         elif cell_value in [6, 7, 8, 9]:
             if cell_value == level.winning_cell:
-
-                # winning game
-                self.display.notification("You did it! You solved the thing!")
-                self.display.go_back = True
-
+                self.win_game()
             else:
+                self.lose_game()
 
-                # losing game
-                self.display.notification("You didn't do it! You didn't solve the thing!")
-                self.superposition_active = False
-                level.reset()
+    def win_game(self):
+        level = self.display.level
+
+        # winning game
+        self.display.notification("You did it! You have successfully completed this level!")
+
+        # going back after delay
+        def level_completed():
+            self.display.go_back = True
+            self.superposition_active = False
+            level.reset()
+
+        self.start_delayed_action(2, level_completed)
+
+    def lose_game(self):
+        level = self.display.level
+
+        # losing game
+        self.display.notification("That was the wrong answer! Try the level again.")
+        self.superposition_active = False
+        level.reset()
                 

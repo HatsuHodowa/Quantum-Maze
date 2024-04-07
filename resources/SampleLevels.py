@@ -25,9 +25,7 @@ class Level():
         self.set_player_spawn()
 
     def reset(self):
-        print(self.grid == self.original_grid)
         self.grid = copy.deepcopy(self.original_grid)
-        print(self.grid == self.original_grid)
         self.set_player_spawn()
 
     def set_player_spawn(self):
@@ -68,9 +66,9 @@ XGate = Level([
 )
 
 ZGate = Level([
-        [1, 0, 1, 0, 1, 0, 0, 0, 8, 1],
-        [7, 0, 1, 1, 1, 0, 1, 1, 1, 1],
-        [1, 0, 0, 1, 0, 0, 0, 0, 1, 1],
+        [1, 1, 1, 0, 1, 0, 0, 0, 8, 1],
+        [7, 0, 1, 0, 1, 0, 1, 1, 1, 1],
+        [1, 0, 1, 0, 0, 0, 0, 0, 1, 1],
         [1, 0, 0, 0, 0, 1, 1, 0, 1, 9],
         [1, 2, 1, 1, 0, 0, 0, 0, 0, 0],
         [0, 0, 1, 1, 1, 1, 2, 1, 1, 1],
