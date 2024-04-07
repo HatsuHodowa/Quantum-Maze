@@ -115,6 +115,31 @@ class GridDisplay():
             for y_coord in range(GRID_SIZE):
                 for x_coord in range(GRID_SIZE):
 
+                    # checking if cell is visible
+                    is_visible = False
+                    if y_coord == self.level.player_coords[1]:
+                        distance = y_coord - self.level.player_coords[1]
+
+                        for other_y in range(GRID_SIZE):
+                            other_distance = other_y - self.level.player_coords[1]
+                            other_value = self.level.get_coord_value(x_coord, other_y)
+                            if not other_value in [1, 2] or other_distance > distance:
+                                is_visible = True
+                                break
+
+                    elif x_coord == self.level.player_coords[0]:
+                        row = self.level.grid[y_coord]
+                        distance = x_coord - self.level.player_coords[0]
+
+                        for other_x, other_value in enumerate(row):
+                            other_distance = other_x - self.level.player_coords[0]
+                            if not other_value in [1, 2] or other_distance > distance:
+                                is_visible = True
+                                break
+
+                    if not is_visible:
+                        continue
+
                     # creating rect for cell
                     cell_rect = pygame.Rect(
                         GRID_RECT.topleft[0] + x_coord * CELL_SIZE,
