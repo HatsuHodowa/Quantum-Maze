@@ -87,7 +87,7 @@ class GridDisplay():
         pygame.quit()
 
     def return_to_levels(self):
-        pygame.display.set_mode(self.menu.window_size)
+        pygame.display.set_mode(self.menu.menu_size)
         self.menu.set_window("levels_menu")
         self.running = False
         

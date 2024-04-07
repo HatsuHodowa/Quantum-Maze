@@ -18,11 +18,12 @@ class MainMenu():
     def __init__(self):
 
         # gui properties
-        self.window_size = (300, 300)
+        self.menu_size = (300, 300)
+        self.tutorial_size = (600, 500)
 
         # preparing window
-        self.window = pygame.display.set_mode(self.window_size)
-        self.ui_manager = pygame_gui.UIManager(self.window_size)
+        self.window = pygame.display.set_mode(self.menu_size)
+        self.ui_manager = pygame_gui.UIManager(self.menu_size)
         self.clock = pygame.time.Clock()
         self.running = True
 
@@ -59,6 +60,9 @@ class MainMenu():
             pygame.display.flip()
 
         pygame.quit()
+    def set_window_size(self, to_set):
+        self.ui_manager.set_window_resolution(to_set)
+        pygame.display.set_mode(to_set)
 
     def set_window(self, window_name: str):
         self.ui_manager.clear_and_reset()
@@ -66,6 +70,9 @@ class MainMenu():
             getattr(self, window_name)()
 
     def main_menu(self):
+
+        # adjusting window size
+        self.set_window_size(self.menu_size)
 
         # creating ui elements
         title = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.05, 0.8, 0.2),
@@ -113,20 +120,31 @@ class MainMenu():
         self.button_events["back_button"] = on_back_button
         
     def tutorial_menu(self):
-        tutorial_text="yo"
 
-        tutorial = title = pygame_gui.elements.UITextBox(html_text=tutorial_text,
-            relative_rect=pygame.Rect((50, 400), (700, 150)),
+        # adjusting window size
+        self.set_window_size(self.tutorial_size)
+
+        # tutorial ui items
+        file = open("view/tutorial.txt", "r")
+        tutorial_text = file.read()
+
+        tutorial_text = pygame_gui.elements.UITextBox(html_text=tutorial_text,
+            relative_rect=pygame.Rect(0, 25, 550, 380),
             **self.default_kwargs, **self.center_anchor_kwargs)
-        back_button = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.65, 0.8, 0.14),
-            text="Back", object_id="back_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        back_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(0, -70, 150, 50),
+            text="Back", object_id="back_button", **self.default_kwargs, anchors={"centerx": "centerx", "bottom": "bottom"})
         
+        # connecting buttons
         def on_back_button():
             self.set_window("main_menu")
             
         self.button_events["back_button"] = on_back_button
         
     def levels_menu(self):
+
+        # adjusting window size
+        self.set_window_size(self.menu_size)
+
         # creating ui elements
         title = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.05, 0.8, 0.2),
             text="All Levels", **self.default_kwargs, **self.center_anchor_kwargs)
@@ -177,8 +195,8 @@ class MainMenu():
         based on the current screen size (i.e. 0.5 is 50% of 500 pixels)"""
 
         # calculating pixels
-        x_pixels = round(self.window_size[0] * x_scale)
-        y_pixels = round(self.window_size[1] * y_scale)
+        x_pixels = round(self.menu_size[0] * x_scale)
+        y_pixels = round(self.menu_size[1] * y_scale)
 
         # returning
         return x_pixels, y_pixels
