@@ -88,6 +88,30 @@ class MainMenu():
             
         self.button_events["tutorial_button"] = on_tutorial_button
         
+        def on_credits_button():
+            self.set_window("credits_menu")
+            
+        self.button_events["credits_button"] = on_credits_button
+        
+    def credits_menu(self):
+        
+        title = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, -0.02, 0.8, 0.2),
+            text="Quantum Maze Game", **self.default_kwargs, **self.center_anchor_kwargs)
+        credits = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.05, 0.8, 0.2),
+            text="Created By:", **self.default_kwargs, **self.center_anchor_kwargs)
+        arryn = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.12, 0.8, 0.2),
+            text="Arryn Carlos O'Brien", **self.default_kwargs, **self.center_anchor_kwargs)
+        andSymbol = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.19, 0.8, 0.2),
+            text="&", **self.default_kwargs, **self.center_anchor_kwargs)
+        mustafa = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.26, 0.8, 0.2),
+            text="Mustafa Aljumayli", **self.default_kwargs, **self.center_anchor_kwargs)
+        back_button = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.65, 0.8, 0.14),
+            text="Back", object_id="back_button", **self.default_kwargs, **self.center_anchor_kwargs)
+        
+        def on_back_button():
+            self.set_window("main_menu")
+        self.button_events["back_button"] = on_back_button
+        
     def tutorial_menu(self):
         tutorial_text="yo"
 

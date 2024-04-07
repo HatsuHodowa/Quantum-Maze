@@ -1,0 +1,24 @@
+Tutorial: 
+Find your way through the maze to reach the exit. Match your qubit with its correct gate output but be wary of the impact each gate might have on your journey. If you choose the wrong output, you will be sent back to spawnpoint. Choose the right output and you will get a victory message and be sent back to the main menu to complete another level.
+
+Learning
+Qubit:
+In this game, you are a qubit trying to find their way out of the gate correctly. A qubit is the central unit of information for quantum computers. Your qubit has multiple states that it can reach to be measured based on the gate you are in and the output you choose.The walls are also a representation of qubits, so you will attempt to shove your way between them and out to the exit of the game. 
+
+Entanglement:
+As you traverse through the maze, you might encounter entanglement where the states of some qubits on the board are entangled with one another meaning that when one qubit’s state changes, the other one is determined as well.
+
+Superpostion:
+Quantum theory states that qubits can also be measured in states of superposition where a qubit can be in 2 states at once. As you traverse the maze, you may encounter this state where all the qubits in the board start having a superposition party.
+
+Controls:
+Use the arrow keys to move your character:
+Up arrow: Move up
+Down arrow: Move down
+Right arrow: Move right
+Left arrow: Move left
+
+Gameplay:
+Exploration: Use the arrow keys to navigate through the maze. Your goal is to reach the exit, marked by your qubit’s output symbol as it traverses through the gate.
+
+Watch Out for Entanglement: As you explore the maze, watch out for areas with quantum entanglement. Entangled regions may confuse your path, making it harder to find your way. If you encounter entanglement, try to find an alternate route to progress.
