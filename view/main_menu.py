@@ -102,13 +102,16 @@ class MainMenu():
             self.set_window("main_menu")
 
         def on_level1_button():
-            grid_display.GridDisplay(SampleLevels.XGate)
+            self.ui_manager.clear_and_reset()
+            grid_display.GridDisplay(SampleLevels.XGate, self)
             
         def on_level2_button():
-            grid_display.GridDisplay(SampleLevels.ZGate)
+            self.ui_manager.clear_and_reset()
+            grid_display.GridDisplay(SampleLevels.ZGate, self)
             
         def on_level3_button():
-            grid_display.GridDisplay(SampleLevels.HGate)
+            self.ui_manager.clear_and_reset()
+            grid_display.GridDisplay(SampleLevels.HGate, self)
 
         self.button_events["back_button"] = on_back_button
         self.button_events["level1_button"] = on_level1_button
