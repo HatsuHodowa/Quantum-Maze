@@ -11,7 +11,8 @@ CELL_COLORS = {
     6 : pygame.Color(255, 255, 0),
     7 : pygame.Color(255, 255, 0),
     8 : pygame.Color(255, 255, 0),
-    9 : pygame.Color(255, 255, 0)
+    9 : pygame.Color(255, 255, 0),
+    10: pygame.Color(255, 255, 255)
 }
 
 class cell_type(Enum):
@@ -25,4 +26,5 @@ class cell_type(Enum):
     CHECKPOINT_01 = 7
     CHECKPOINT_NEGATIVE = 8
     CHECKPOINT_POSITIVE = 9
+    SUPER_POSITION_PARTY = 10
     
