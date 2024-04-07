@@ -58,7 +58,7 @@ class Model():
         level = self.display.level
 
         # limiting player to grid
-        goal_position = (level.player_coord[0] + to_move[0], level.player_coord[1] + to_move[1])
+        goal_position = (level.player_coords[0] + to_move[0], level.player_coords[1] + to_move[1])
         if goal_position[0] > 9 or goal_position[0] < 0:
             return
         if goal_position[1] > 9 or goal_position[1] < 0:
@@ -70,9 +70,21 @@ class Model():
             return
 
         # moving player
-        level.player_coord = goal_position
+        level.player_coords = goal_position
+        self.process_current_square()
 
     def process_current_square(self):
+
+        # variables
         level = self.display.level
         player_coords = level.player_coords
-        
+        cell_value = level.get_coord_value(player_coords[0], player_coords[1])
+
+        # checking cell value
+        if cell_value == 4:
+            print('trigger')
+        elif cell_value in [6, 7, 8, 9]:
+            if cell_value == level.winning_cell:
+                print('won!!!')
+            else:
+                print('lost!!!')
