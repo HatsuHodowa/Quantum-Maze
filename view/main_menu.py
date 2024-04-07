@@ -83,6 +83,18 @@ class MainMenu():
 
         self.button_events["levels_button"] = on_levels_button
 
+        def on_tutorial_button():
+            self.set_window("tutorial_button")
+            
+        self.button_events["tutorial_button"] = on_tutorial_button
+        
+        tutorial_text=""""""
+        
+        tutorial = title = pygame_gui.elements.UITextBox(html_text=tutorial_text,
+            relative_rect=pygame.Rect((50, 400), (700, 150)),
+            **self.default_kwargs, **self.center_anchor_kwargs)
+        
+    def levels_menu(self):
         # creating ui elements
         title = pygame_gui.elements.UILabel(relative_rect=self.generate_scale_rect(0, 0.05, 0.8, 0.2),
             text="All Levels", **self.default_kwargs, **self.center_anchor_kwargs)
@@ -95,18 +107,6 @@ class MainMenu():
         back_button = pygame_gui.elements.UIButton(relative_rect=self.generate_scale_rect(0, 0.65, 0.8, 0.14),
             text="Back", object_id="back_button", **self.default_kwargs, **self.center_anchor_kwargs)
         
-        def on_tutorial_button():
-            self.set_window("tutorial_button")
-            
-        self.button_events["tutorial_button"] = on_tutorial_button
-        
-        tutorial_text=""""""
-        
-        tutorial = title = pygame_gui.elements.UITextBox(html_text=tutorial_text,
-            relative_rect=pygame.Rect((50, 400), (700, 150)),
-            text="All Levels", **self.default_kwargs, **self.center_anchor_kwargs)
-        
-    def levels_menu(self):
         # button events
         def on_back_button():
             self.set_window("main_menu")
