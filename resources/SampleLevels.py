@@ -1,3 +1,5 @@
+import copy
+
 """
 0 = PATH
 1 = WALL
@@ -14,7 +16,7 @@
 class Level():
     def __init__(self, grid, winning_cell: int, name: str):
         self.grid = grid
-        self.original_grid = grid.copy()
+        self.original_grid = copy.deepcopy(grid)
         self.winning_cell = winning_cell
         self.player_coords = (0, 0)
         self.name = name
@@ -23,7 +25,9 @@ class Level():
         self.set_player_spawn()
 
     def reset(self):
-        self.grid = self.original_grid.copy()
+        print(self.grid == self.original_grid)
+        self.grid = copy.deepcopy(self.original_grid)
+        print(self.grid == self.original_grid)
         self.set_player_spawn()
 
     def set_player_spawn(self):

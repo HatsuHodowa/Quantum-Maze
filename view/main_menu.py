@@ -53,7 +53,6 @@ class MainMenu():
                 self.ui_manager.process_events(event)
 
             # display
-            print('before error')
             self.ui_manager.update(dt)
             self.update_display()
             self.ui_manager.draw_ui(self.window)

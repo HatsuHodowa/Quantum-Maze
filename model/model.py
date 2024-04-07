@@ -132,5 +132,6 @@ class Model():
 
                 # losing game
                 self.display.notification("You didn't do it! You didn't solve the thing!")
+                self.superposition_active = False
                 level.reset()
                 
