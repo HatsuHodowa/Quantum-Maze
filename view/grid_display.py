@@ -45,8 +45,9 @@ class GridDisplay():
             text="Back", object_id="back_button", **self.default_kwargs,
             anchors={"centerx": "centerx", "bottom": "bottom"})
         self.notif_text = pygame_gui.elements.UITextBox(relative_rect=pygame.Rect(0, -140, 450, 70),
-            html_text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", **self.default_kwargs,
+            html_text="", **self.default_kwargs,
             anchors={"centerx": "centerx", "bottom": "bottom"}, )
+        self.notif_text.visible = False
 
         # starting loop
         while self.running:
@@ -77,6 +78,14 @@ class GridDisplay():
             pygame.display.flip()
 
         pygame.quit()
+
+    def notification(self, message: str):
+        self.notif_text.html_text = message
+        self.notif_text.visible = True
+
+    def hide_notification(self):
+        self.notif_text.visible = False
+        self.notif_text.html_text = ""
 
     def get_gridsize():
         return GRID_SIZE
