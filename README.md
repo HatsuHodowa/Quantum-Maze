@@ -7,3 +7,19 @@ Dependencies used: pygame & pygame-gui, before you attempt to run our code, plea
 "pip install pygame"
 
 "pip install pygame-gui"
+
+Credits: Arryn Carlos O'Brien & Mustafa Aljumayli
+
+Distribution of responsibilities:
+
+Arryn Carlos O'Brien:
+
+-UI/UX Design 
+-View/Controller
+-Joint work in model
+
+Mustafa Aljumayli:
+
+-Level Design
+-Application logic
+-Joint work in model
