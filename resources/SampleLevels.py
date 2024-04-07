@@ -14,6 +14,7 @@
 class Level():
     def __init__(self, grid, winning_cell: int, name: str):
         self.grid = grid
+        self.original_grid = grid.view()
         self.winning_cell = winning_cell
         self.player_coords = (0, 0)
         self.name = name
@@ -42,6 +43,7 @@ class Level():
     
     def get_cell_type(self, x, y):
         return 
+    
     
 XGate = Level([
         [1, 1, 1, 0, 1, 1, 1, 1, 8, 1],

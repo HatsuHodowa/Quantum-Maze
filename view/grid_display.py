@@ -2,6 +2,7 @@ import pygame
 import pygame_gui
 import pygame_gui.ui_manager
 import sys
+import time
 
 # importing modules
 sys.path.append("..")
@@ -53,6 +54,16 @@ class GridDisplay():
         while self.running:
             dt = self.clock.tick(60) / 1000
 
+
+            # process model
+            self.model.on_update(dt)
+
+            # updating display
+            self.ui_manager.update(dt)
+            self.update_display()
+            self.ui_manager.draw_ui(self.window)
+            pygame.display.flip()
+            
             # event handling
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -68,17 +79,9 @@ class GridDisplay():
 
                 self.ui_manager.process_events(event)
 
-            # process model
-            self.model.on_update(dt)
-
-            # updating display
-            self.ui_manager.update(dt)
-            self.update_display()
-            self.ui_manager.draw_ui(self.window)
-            pygame.display.flip()
-
         pygame.quit()
-
+        
+        
     def notification(self, message: str):
         self.notif_text.html_text = message
         self.notif_text.visible = True
