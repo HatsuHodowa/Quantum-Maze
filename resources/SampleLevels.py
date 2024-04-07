@@ -25,9 +25,7 @@ class Level():
         self.set_player_spawn()
 
     def reset(self):
-        print(self.grid == self.original_grid)
         self.grid = copy.deepcopy(self.original_grid)
-        print(self.grid == self.original_grid)
         self.set_player_spawn()
 
     def set_player_spawn(self):

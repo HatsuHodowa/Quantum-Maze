@@ -22,15 +22,17 @@ class Model():
         self.superposition_active = False
         self.superposition_interval = 0
         self.last_superposition = 0
-        
-    def isOccupied(self) -> bool:
-        pass
-    
-    def isSolved(self) -> bool:
-        return True
 
-    def isMoveIllegal(self, r, c) -> bool:
-        pass
+        self.delayed_action_start = 0
+        self.delayed_action_active = False
+        self.delayed_action_callback = None
+        self.delayed_action_duration = 0
+
+    def start_delayed_action(self, delay: float, callback):
+        self.delayed_action_start = time.time()
+        self.delayed_action_callback = callback
+        self.delayed_action_duration = delay
+        self.delayed_action_active = True
     
     def on_update(self, dt):
 
@@ -71,6 +73,11 @@ class Model():
 
             # setting current time
             self.last_superposition = time.time()
+
+        # delayed actions
+        if self.delayed_action_active and time.time() - self.delayed_action_start > self.delayed_action_duration:
+            self.delayed_action_callback()
+            self.delayed_action_active = False
 
     def move_player(self, to_move):
         level = self.display.level
@@ -124,13 +131,20 @@ class Model():
             if cell_value == level.winning_cell:
 
                 # winning game
-                self.display.notification("You did it! You solved the thing!")
-                self.display.go_back = True
+                self.display.notification("You did it! You have successfully completed this level!")
+
+                # going back after delay
+                def level_completed():
+                    self.display.go_back = True
+                    self.superposition_active = False
+                    level.reset()
+
+                self.start_delayed_action(2, level_completed)
 
             else:
 
                 # losing game
-                self.display.notification("You didn't do it! You didn't solve the thing!")
+                self.display.notification("That was the wrong answer! Try the level again.")
                 self.superposition_active = False
                 level.reset()
                 
