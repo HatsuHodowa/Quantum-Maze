@@ -71,3 +71,8 @@ class Model():
 
         # moving player
         level.player_coord = goal_position
+
+    def process_current_square(self):
+        level = self.display.level
+        player_coords = level.player_coords
+        
