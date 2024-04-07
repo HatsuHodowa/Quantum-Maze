@@ -74,28 +74,28 @@ class GridDisplay():
                     pygame.draw.rect(self.window, cell_color, cell_rect, 0)
 
                     # drawing labels on winning cells
-                    if cell_value in [6, 7, 8, 9]:
+                    if cell_value in [5, 6, 7, 8, 9]:
 
                         # picking text
-                        text = "00"
+                        text = "|0>"
                         if cell_value == 7:
-                            text = "01"
+                            text = "|1>"
                         elif cell_value == 8:
-                            text = "10"
+                            text = "|->"
                         elif cell_value == 9:
-                            text = "11"
+                            text = "|+>"
 
                         # creating text
-                        font = pygame.font.SysFont("timesnewroman", 14)
+                        font = pygame.font.Font("robotomono.ttf", 20)
                         text = font.render(text=text, antialias=True, color=pygame.Color(0, 0, 0))
                         
                         self.window.blit(text, cell_rect)
 
         # drawing player
-        player_coord = self.level.player_coord
+        player_coords = self.level.player_coords
         player_pixels = (
-            GRID_RECT.topleft[0] + player_coord[0] * CELL_SIZE + CELL_SIZE / 2,
-            GRID_RECT.topleft[1] + player_coord[1] * CELL_SIZE + CELL_SIZE / 2
+            GRID_RECT.topleft[0] + player_coords[0] * CELL_SIZE + CELL_SIZE / 2,
+            GRID_RECT.topleft[1] + player_coords[1] * CELL_SIZE + CELL_SIZE / 2
         )
         pygame.draw.circle(self.window, pygame.Color(0, 255, 255), player_pixels, CELL_SIZE / 3, 0)
 
