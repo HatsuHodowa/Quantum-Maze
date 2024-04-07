@@ -11,10 +11,11 @@
 
 """
 class Level():
-    def __init__(self, grid, winning_cell: int):
+    def __init__(self, grid, winning_cell: int, name: str):
         self.grid = grid
         self.winning_cell = winning_cell
-        self.player_coords = (0, 0)
+        self.player_coord = (0, 0)
+        self.name = name
 
         # setting player at spawn location
         self.set_player_spawn()
@@ -23,7 +24,7 @@ class Level():
         for y_coord, row in enumerate(self.grid):
             for x_coord, value in enumerate(row):
                 if value == 5:
-                    self.player_coords = (x_coord, y_coord)
+                    self.player_coord = (x_coord, y_coord)
                     return
 
     def get_coord_value(self, x, y):
@@ -49,7 +50,7 @@ XGate = Level([
         [1, 0, 0, 0, 1, 0, 0, 0, 1, 1],
         [1, 0, 1, 1, 1, 0, 1, 0, 1, 1],
         [1, 5, 1, 1, 1, 9, 1, 0, 0, 0]
-    ], 7
+    ], 7, "X Gate"
 )
 
 ZGate = Level([
@@ -57,13 +58,13 @@ ZGate = Level([
         [7, 0, 1, 1, 0, 1, 1, 0, 1, 0],
         [0, 0, 0, 1, 1, 1, 0, 1, 1, 1],
         [1, 0, 0, 0, 0, 1, 1, 0, 1, 0],
-        [1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 1, 1, 1, 0, 1, 1, 1],
-        [1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+        [1, 3, 1, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 1, 1, 1, 2, 1, 1, 1],
+        [1, 0, 1, 0, 4, 0, 0, 3, 0, 0],
         [1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 1, 1, 1, 1, 1, 6],
-        [1, 5, 0, 0, 0, 1, 0, 0, 1, 0]
-    ], 7
+        [1, 5, 0, 0, 0, 0, 0, 2, 0, 0]
+    ], 7, "Z Gate"
 )
 
 HGate = Level([
@@ -79,5 +80,5 @@ HGate = Level([
         [1, 5, 1, 1, 1, 0, 1, 1, 1, 0],
         [1, 5, 1, 1, 1, 0, 1, 1, 1, 0],
         [1, 5, 1, 1, 1, 0, 1, 1, 1, 0]
-    ], 7
+    ], 7 "H Gate"
 )
