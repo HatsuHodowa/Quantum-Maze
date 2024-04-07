@@ -1,4 +1,6 @@
 import pygame
+import pygame_gui
+import pygame_gui.ui_manager
 import sys
 
 # importing modules
@@ -15,7 +17,7 @@ pygame.font.init()
 
 # constants
 GRID_SIZE = 10
-WINDOW_PIXEL_SIZE = (500, 500)
+WINDOW_PIXEL_SIZE = (500, 600)
 MARGIN = 50
 GRID_RECT = pygame.Rect(MARGIN, MARGIN, 500 - MARGIN * 2, 500 - MARGIN * 2)
 CELL_SIZE = GRID_RECT.width / GRID_SIZE
@@ -25,11 +27,22 @@ class GridDisplay():
         
         # properties
         self.window = pygame.display.set_mode(WINDOW_PIXEL_SIZE)
+        self.ui_manager = pygame_gui.UIManager(WINDOW_PIXEL_SIZE)
         self.clock = pygame.time.Clock()
         self.running = True
 
         self.level = level
         self.model = model.Model(self)
+
+        # ui properties
+        self.default_kwargs = {"manager": self.ui_manager}
+
+        # adding UI elements
+        self.title = pygame_gui.elements.UILabel(relative_rect=pygame.Rect(0, 10, 300, 35),
+            text=level.name, **self.default_kwargs, anchors={"centerx": "centerx", "top": "top"})
+        self.back_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(0, -60, 100, 50),
+            text="Back", object_id="back_button", **self.default_kwargs,
+            anchors={"centerx": "centerx", "bottom": "bottom"})
 
         # starting loop
         while self.running:
@@ -40,11 +53,20 @@ class GridDisplay():
                 if event.type == pygame.QUIT:
                     self.running = False
 
+                if event.type == pygame_gui.UI_BUTTON_PRESSED:
+                    if event.ui_object_id == "back_button":
+                        print('back')
+
+                self.ui_manager.process_events(event)
+
             # process model
             self.model.on_update(dt)
 
             # updating display
+            self.ui_manager.update(dt)
             self.update_display()
+            self.ui_manager.draw_ui(self.window)
+            pygame.display.flip()
 
         pygame.quit()
 
@@ -101,6 +123,3 @@ class GridDisplay():
 
         # drawing box
         pygame.draw.rect(self.window, color="white", rect=GRID_RECT, width=1)
-
-        # updating
-        pygame.display.update()

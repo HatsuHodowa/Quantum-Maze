@@ -14,7 +14,7 @@ class Level():
     def __init__(self, grid, winning_cell: int, name: str):
         self.grid = grid
         self.winning_cell = winning_cell
-        self.player_coord = (0, 0)
+        self.player_coords = (0, 0)
         self.name = name
 
         # setting player at spawn location
@@ -24,7 +24,7 @@ class Level():
         for y_coord, row in enumerate(self.grid):
             for x_coord, value in enumerate(row):
                 if value == 5:
-                    self.player_coord = (x_coord, y_coord)
+                    self.player_coords = (x_coord, y_coord)
                     return
 
     def get_coord_value(self, x, y):

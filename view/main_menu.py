@@ -110,7 +110,6 @@ class MainMenu():
         def on_level3_button():
             grid_display.GridDisplay(SampleLevels.HGate)
 
-
         self.button_events["back_button"] = on_back_button
         self.button_events["level1_button"] = on_level1_button
         self.button_events["level2_button"] = on_level2_button
