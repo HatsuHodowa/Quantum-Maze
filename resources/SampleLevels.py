@@ -32,7 +32,7 @@ class Level():
         return self.grid[y][x]
     
     def set_coord_value(self, x, y, cell_type):
-        return self.grid[y][x] == cell_type
+        self.grid[y][x] = cell_type
     
     def getWidth(self, x:int):
         return len(self.grid[x])

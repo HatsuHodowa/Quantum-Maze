@@ -6,7 +6,7 @@ CELL_COLORS = {
     1 : pygame.Color(0, 0, 0),
     2 : pygame.Color(0, 0, 0),
     3 : pygame.Color(255, 255, 255),
-    4 : pygame.Color(150, 200, 150),
+    4 : pygame.Color(255, 255, 255),
     5 : pygame.Color(255, 150, 150),
     6 : pygame.Color(255, 255, 0),
     7 : pygame.Color(255, 255, 0),

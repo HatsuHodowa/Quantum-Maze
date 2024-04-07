@@ -82,6 +82,7 @@ class GridDisplay():
     def notification(self, message: str):
         self.notif_text.html_text = message
         self.notif_text.visible = True
+        self.notif_text.rebuild()
 
     def hide_notification(self):
         self.notif_text.visible = False

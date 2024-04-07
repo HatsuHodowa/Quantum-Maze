@@ -67,7 +67,7 @@ class Model():
         
         # checking tiles
         cell_value = level.get_coord_value(goal_position[0], goal_position[1])
-        if cell_value == 1:
+        if cell_value == 1 or cell_value == 2:
             return
 
         # moving player
@@ -88,15 +88,17 @@ class Model():
                 for y in range(grid_display.GridDisplay.get_gridsize()):
                     current_cell_value = level.get_coord_value(x, y)
                     if current_cell_value == 2:
-                        level.set_coord_value(x, y, 3)
-                        print(level.grid)
+                        level.set_coord_value(x, y, 0)
                     elif current_cell_value == 3:
-                        level.set_coord_value(x, y, 2)
-                        print(level.grid)
+                        level.set_coord_value(x, y, 1)
+                    elif current_cell_value == 4:
+                        level.set_coord_value(x, y, 0)
+
+            self.display.notification("You have been entangled!!!!!")
             
         elif cell_value in [6, 7, 8, 9]:
             if cell_value == level.winning_cell:
-                print('won!!!')
+                self.display.notification("You did it! You solved the thing!")
             else:
-                print('lost!!!')
+                self.display.notification("You didn't do it! You didn't solve the thing!")
                 
