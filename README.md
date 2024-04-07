@@ -1,7 +1,9 @@
 # Quantum-Maze
 
-Description: a small maze game used to describe the fundamental theoretical idea of quantum computing and mechanics. This project was created by 2 engineers in the span of 16 hours following the start of UNC's first ever Quantum Computing Hackathon.
+## Description
+A small maze game used to describe the fundamental theoretical idea of quantum computing and mechanics. This project was created by 2 engineers in the span of 16 hours following the start of UNC's first ever Quantum Computing Hackathon.
 
+## Dependencies & Setup
 Dependencies used: pygame & pygame-gui, before you attempt to run our code, please run the following commands in your terminal in order:
 
 "pip install pygame"
@@ -9,7 +11,7 @@ Dependencies used: pygame & pygame-gui, before you attempt to run our code, plea
 "pip install pygame-gui"
 
 
-**Credits: 
+## Credits
 Arryn Carlos O'Brien & Mustafa Aljumayli**
 
 Distribution of responsibilities:
