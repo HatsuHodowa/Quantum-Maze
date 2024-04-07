@@ -103,9 +103,18 @@ class MainMenu():
 
         def on_level1_button():
             grid_display.GridDisplay(SampleLevels.XGate)
+            
+        def on_level2_button():
+            grid_display.GridDisplay(SampleLevels.ZGate)
+            
+        def on_level3_button():
+            grid_display.GridDisplay(SampleLevels.HGate)
+
 
         self.button_events["back_button"] = on_back_button
         self.button_events["level1_button"] = on_level1_button
+        self.button_events["level2_button"] = on_level2_button
+        self.button_events["level3_button"] = on_level3_button
 
     def generate_scale_rect(self, x_pos, y_pos, width, height):
         """Converts 4 positional and scale values from a proportion of the screen to an actual
