@@ -17,11 +17,17 @@ Distribution of responsibilities:
 Arryn Carlos O'Brien:
 
 -UI/UX Design 
+<br>
 -View/Controller
+<br>
 -Joint work in model
+<br>
 
 Mustafa Aljumayli:
 
 -Level Design
+<br>
 -Application logic
+<br>
 -Joint work in model
+<br>
