@@ -20,7 +20,7 @@ class Model():
         self.last_keys = None
 
         self.superposition_active = False
-        self.superposition_interval = 0.5
+        self.superposition_interval = 0
         self.last_superposition = 0
         
     def isOccupied(self) -> bool:
