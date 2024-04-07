@@ -32,6 +32,7 @@ class GridDisplay():
         self.ui_manager = pygame_gui.UIManager(WINDOW_PIXEL_SIZE)
         self.clock = pygame.time.Clock()
         self.running = True
+        self.go_back = False
 
         self.level = level
         self.model = model.Model(self)
@@ -61,11 +62,18 @@ class GridDisplay():
                     pygame.quit()
 
                 if event.type == pygame_gui.UI_BUTTON_PRESSED:
+                    print('button press?')
                     if event.ui_object_id == "back_button":
                         self.return_to_levels()
                         return
 
                 self.ui_manager.process_events(event)
+            
+            # level completion
+            if self.go_back == True:
+                self.return_to_levels()
+                self.go_back = False
+                return
 
             # process model
             self.model.on_update(dt)
@@ -79,9 +87,9 @@ class GridDisplay():
         pygame.quit()
 
     def return_to_levels(self):
-        self.running = False
         pygame.display.set_mode(self.menu.window_size)
         self.menu.set_window("levels_menu")
+        self.running = False
         
     def notification(self, message: str):
         self.notif_text.html_text = message

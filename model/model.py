@@ -125,8 +125,7 @@ class Model():
 
                 # winning game
                 self.display.notification("You did it! You solved the thing!")
-                time.sleep(3.0)
-                self.display.return_to_levels()
+                self.display.go_back = True
 
             else:
 
