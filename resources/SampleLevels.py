@@ -1,13 +1,14 @@
 """
 0 = PATH
 1 = WALL
-2 = ENTANGLED BLOCK 1
-3 = ENTANGLED BLOCK 2
+2 = ENTANGLED BLOCK 1 -- equates to wall
+3 = ENTANGLED BLOCK 2 -- equates to space
 4 = ENTANGLED BLOCK TRIGGER
 5 = SPAWN POINT
-6 = CHECKPOINT 01
-7 = CHECKPOINT 10
-8 = CHECKPOINT 11
+6 = CHECKPOINT 0
+7 = CHECKPOINT 1
+8 = CHECKPOINT_NEGATIVE
+9 = CHECKPOINT_POSITIVE
 
 """
 class Level():
@@ -58,10 +59,10 @@ XGate = Level([
 
 ZGate = Level([
         [1, 0, 1, 0, 1, 0, 0, 0, 8, 1],
-        [7, 0, 1, 1, 0, 0, 1, 1, 1, 0],
-        [0, 0, 0, 1, 0, 0, 0, 0, 1, 1],
-        [1, 0, 0, 0, 0, 1, 1, 0, 1, 0],
-        [1, 3, 1, 1, 0, 0, 0, 0, 0, 0],
+        [7, 0, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 0, 0, 1, 0, 0, 0, 0, 1, 1],
+        [1, 0, 0, 0, 0, 1, 1, 0, 1, 9],
+        [1, 2, 1, 1, 0, 0, 0, 0, 0, 0],
         [0, 0, 1, 1, 1, 1, 2, 1, 1, 1],
         [1, 0, 1, 0, 4, 0, 0, 3, 0, 0],
         [1, 0, 1, 0, 1, 1, 1, 1, 0, 1],
@@ -74,7 +75,7 @@ HGate = Level([
         [0, 0, 0, 0, 0, 1, 0, 1, 8, 1],
         [7, 1, 0, 1, 0, 0, 1, 0, 0, 0],
         [1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
-        [0, 0, 0, 1, 1, 0, 0, 0, 1, 0],
+        [0, 0, 0, 1, 1, 0, 0, 0, 1, 9],
         [1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
         [0, 0, 0, 0, 1, 1, 0, 0, 1, 1],
         [1, 0, 1, 1, 1, 1, 1, 0, 0, 1],

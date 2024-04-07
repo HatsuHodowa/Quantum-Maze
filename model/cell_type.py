@@ -23,6 +23,6 @@ class cell_type(Enum):
     SPAWN_POINT = 5
     CHECKPOINT_00 = 6
     CHECKPOINT_01 = 7
-    CHECKPOINT_10 = 8
-    CHECKPOINT_11 = 9
+    CHECKPOINT_NEGATIVE = 8
+    CHECKPOINT_POSITIVE = 9
     
