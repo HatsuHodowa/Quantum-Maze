@@ -12,7 +12,7 @@ Dependencies used: pygame & pygame-gui, before you attempt to run our code, plea
 
 
 ## Credits
-Arryn Carlos O'Brien & Mustafa Aljumayli**
+Arryn Carlos O'Brien, Mustafa Aljumayli & Humza Hassan**
 
 Distribution of responsibilities:
 <br><br>
